@@ -11,10 +11,10 @@
     <meta property="og:description" content="Ολιστική προσέγγιση στην ψυχική υγεία. Ανακαλύψτε τη θεραπευτική δύναμη της σωματικής έκφρασης.">
     <link rel="icon" type="image/png" href="https://github.com/agelmet/image/blob/main/thumbnail-2.png?raw=true">
 
-    <!-- Google Fonts: Playfair Display (Elegant Serif) & Montserrat (Clean Sans) -->
+    <!-- Google Fonts: Cormorant Garamond (Elegant Serif) & Courier Prime (Typewriter Mono) & Montserrat (Clean Sans) -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400;1,500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600&family=Courier+Prime:ital,wght@0,400;0,700;1,400&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
 
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
@@ -41,7 +41,8 @@
                         }
                     },
                     fontFamily: {
-                        serif: ['"Playfair Display"', 'serif'],
+                        serif: ['"Cormorant Garamond"', 'serif'],
+                        mono: ['"Courier Prime"', 'monospace'],
                         sans: ['"Montserrat"', 'sans-serif'],
                     },
                     backgroundImage: {
@@ -98,14 +99,6 @@
         }
 
         /* Glassmorphism Utilities */
-        .glass-panel {
-            background: rgba(255, 255, 255, 0.75);
-            backdrop-filter: blur(24px);
-            -webkit-backdrop-filter: blur(24px);
-            border: 1px solid rgba(255, 255, 255, 0.9);
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.05);
-        }
-        
         .glass-nav {
             background: rgba(255, 255, 255, 0.95);
             backdrop-filter: blur(16px);
@@ -192,8 +185,8 @@
             <a href="#" class="flex items-center gap-3 group relative z-50">
                 <img src="https://github.com/agelmet/image/blob/main/thumbnail-2.png?raw=true" alt="Logo" class="w-10 h-10 object-contain group-hover:rotate-12 transition-transform duration-500">
                 <div class="flex flex-col">
-                    <span class="font-serif text-xl tracking-widest font-semibold uppercase leading-none text-brand-dark">ΤΟΝΙΑ ΚΑΨΑΝΑΚΗ</span>
-                    <span class="text-[10px] tracking-[0.2em] text-brand-accent uppercase font-medium mt-1">ΣΥΜΒΟΥΛΟΣ ΨΥΧΙΚΗΣ ΥΓΕΙΑΣ</span>
+                    <span class="font-serif text-xl tracking-widest font-normal uppercase leading-none text-brand-dark">ΤΟΝΙΑ ΚΑΨΑΝΑΚΗ</span>
+                    <span class="font-mono text-[9px] tracking-[0.2em] text-brand-accent uppercase font-semibold mt-1">ΣΥΜΒΟΥΛΟΣ ΨΥΧΙΚΗΣ ΥΓΕΙΑΣ</span>
                 </div>
             </a>
 
@@ -231,37 +224,53 @@
         </div>
     </nav>
 
-    <!-- Hero Section (Cleaned & Minimalist) -->
-    <section class="relative min-h-screen flex items-center justify-center overflow-hidden pt-20">
-        <!-- Lighter, sharper background image -->
-        <div class="absolute inset-0 z-0">
-            <img src="https://assets.cdn.filesafe.space/61icdoMiJ2pHklO6mmKW/media/69aa802636702f051e0a973a.jpg" alt="Therapy Room" class="w-full h-full object-cover">
-            <div class="absolute inset-0 bg-white/40"></div>
+    <!-- Hero Section (Mobile Optimized & Business Card Aesthetic) -->
+    <section class="relative min-h-[100svh] flex items-center justify-center overflow-hidden">
+        
+        <!-- Background Implementation -->
+        <div class="absolute inset-0 z-0 bg-brand-base">
+            <!-- Desktop Image (Cover) -->
+            <img src="https://assets.cdn.filesafe.space/61icdoMiJ2pHklO6mmKW/media/69aa802636702f051e0a973a.jpg" alt="Therapy Room" class="hidden md:block w-full h-full object-cover object-[center_20%]">
+            <div class="absolute inset-0 bg-white/40 hidden md:block"></div>
+            
+            <!-- Mobile Image (Top aligned to prevent over-zooming) -->
+            <img src="https://assets.cdn.filesafe.space/61icdoMiJ2pHklO6mmKW/media/69aa802636702f051e0a973a.jpg" alt="Therapy Room" class="block md:hidden w-full h-[65vh] object-cover object-top opacity-60">
+            <!-- Mobile Gradient Fade to base color -->
+            <div class="absolute inset-0 bg-gradient-to-b from-transparent via-brand-base/50 to-brand-base block md:hidden"></div>
         </div>
 
-        <div class="container mx-auto px-6 relative z-10">
-            <div class="flex flex-col items-center justify-center text-center max-w-4xl mx-auto reveal pt-6 lg:pt-0">
+        <!-- Content Overlay -->
+        <div class="container mx-auto px-4 relative z-10 w-full h-full flex flex-col justify-center pt-16 md:pt-0">
+            
+            <!-- White Glass Card on Mobile for total legibility / Blends seamlessly on desktop -->
+            <div class="bg-white/90 md:bg-transparent backdrop-blur-md md:backdrop-blur-none p-8 md:p-0 rounded-[30px] md:rounded-none shadow-2xl shadow-brand-dark/5 md:shadow-none border border-white/50 md:border-transparent w-[96%] max-w-[500px] md:max-w-4xl mx-auto flex flex-col items-center justify-center text-center reveal">
                 
-                <h1 class="font-serif text-5xl md:text-6xl lg:text-7xl leading-tight mb-4 text-brand-dark drop-shadow-sm font-semibold uppercase tracking-widest">
+                <!-- Minimalist Line-Art Bird Graphic -->
+                <i data-lucide="bird" class="w-10 h-10 md:w-12 md:h-12 mx-auto mb-4 text-brand-dark/80" stroke-width="1.2"></i>
+
+                <!-- Name (Elegant Serif from Business Card) -->
+                <h1 class="font-serif text-[2.5rem] md:text-5xl lg:text-6xl leading-tight mb-3 text-brand-dark drop-shadow-sm font-normal uppercase tracking-wide">
                     ΤΟΝΙΑ ΚΑΨΑΝΑΚΗ
                 </h1>
                 
-                <h2 class="text-brand-accent tracking-[0.2em] text-sm md:text-lg uppercase mb-4 font-semibold">
+                <!-- Subtitle (Typewriter Mono) -->
+                <h2 class="font-mono text-brand-accent tracking-[0.15em] md:tracking-[0.2em] text-[10px] md:text-sm uppercase mb-4 font-semibold">
                     ΣΥΜΒΟΥΛΟΣ ΨΥΧΙΚΗΣ ΥΓΕΙΑΣ
                 </h2>
                 
-                <p class="font-serif text-2xl md:text-3xl text-brand-dark/90 italic mb-12 leading-relaxed drop-shadow-sm max-w-2xl mx-auto">
-                    Συμβουλευτική - Ψυχοθεραπεία Σωματικής Ραϊχικής Προσέγγισης
+                <!-- Description -->
+                <p class="font-serif text-xl md:text-3xl text-brand-dark/90 italic mb-10 leading-relaxed drop-shadow-sm max-w-2xl mx-auto">
+                    Συμβουλευτική - Ψυχοθεραπεία<br class="md:hidden"> Σωματικής Ραϊχικής Προσέγγισης
                 </p>
                 
                 <!-- Desktop & Mobile Buttons -->
                 <div class="flex flex-col sm:flex-row justify-center items-center gap-4 sm:gap-6 w-full">
-                    <a href="https://www.doctoranytime.gr/d/Symvoulos-psychikis-ygeias/kapsanaki-tonia" target="_blank" class="w-full sm:w-auto group relative px-8 py-4 bg-brand-accent text-white font-serif text-lg tracking-wide overflow-hidden rounded-full shadow-lg shadow-brand-accent/30 transition-all hover:translate-y-[-2px] hover:shadow-xl hover:bg-brand-primary">
+                    <a href="https://www.doctoranytime.gr/d/Symvoulos-psychikis-ygeias/kapsanaki-tonia" target="_blank" class="w-full sm:w-auto group relative px-8 py-3.5 md:py-4 bg-brand-accent text-white font-serif text-lg tracking-wide overflow-hidden rounded-full shadow-lg shadow-brand-accent/30 transition-all hover:translate-y-[-2px] hover:shadow-xl hover:bg-brand-primary">
                         <span class="relative z-10 flex items-center justify-center gap-2">
                             Κλείστε τη συνεδρία <i data-lucide="arrow-right" class="w-4 h-4 group-hover:translate-x-1 transition-transform"></i>
                         </span>
                     </a>
-                    <a href="#about" class="w-full sm:w-auto px-8 py-4 bg-white/90 backdrop-blur-sm border border-brand-dark/10 text-brand-dark font-serif text-lg tracking-wide rounded-full hover:bg-white hover:shadow-lg transition-all">
+                    <a href="#about" class="w-full sm:w-auto px-8 py-3.5 md:py-4 bg-white/80 md:bg-white/90 backdrop-blur-sm border border-brand-dark/10 text-brand-dark font-serif text-lg tracking-wide rounded-full hover:bg-white hover:shadow-lg transition-all">
                         Γνωρίστε με
                     </a>
                 </div>
@@ -269,7 +278,7 @@
         </div>
 
         <!-- Scroll Indicator -->
-        <div class="absolute bottom-8 left-1/2 -translate-x-1/2 animate-bounce hidden md:block">
+        <div class="absolute bottom-8 left-1/2 -translate-x-1/2 animate-bounce hidden md:block z-10">
             <i data-lucide="chevron-down" class="text-brand-dark/60 w-8 h-8"></i>
         </div>
     </section>
@@ -297,8 +306,8 @@
                     <!-- Right: Text -->
                     <div class="w-full lg:w-1/2 flex flex-col justify-center reveal delay-100">
                         <div class="mb-8">
-                            <span class="px-4 py-1.5 rounded-full bg-brand-accent/10 text-brand-accent tracking-widest text-xs uppercase font-bold inline-block mb-4 border border-brand-accent/20">BIOΓΡΑΦΙΚΟ</span>
-                            <h2 class="font-serif text-3xl md:text-5xl text-brand-dark font-medium">
+                            <span class="font-mono px-4 py-1.5 rounded-full bg-brand-accent/10 text-brand-accent tracking-widest text-xs uppercase font-bold inline-block mb-4 border border-brand-accent/20">BIOΓΡΑΦΙΚΟ</span>
+                            <h2 class="font-serif text-3xl md:text-5xl text-brand-dark font-normal">
                                 Γνωρίστε με
                             </h2>
                         </div>
@@ -327,14 +336,13 @@
                         </p>
                     </div>
                     
-                    <!-- Updated Credentials -->
                     <div class="pt-8 border-t border-brand-sand flex flex-wrap gap-6 justify-center lg:justify-start">
                         <div class="flex items-center gap-4 bg-brand-base/50 px-6 py-4 rounded-3xl w-full sm:w-auto">
                             <div class="w-12 h-12 rounded-full bg-white flex items-center justify-center text-brand-accent shadow-sm shrink-0">
                                 <i data-lucide="graduation-cap" class="w-6 h-6"></i>
                             </div>
                             <div>
-                                <p class="text-[10px] uppercase tracking-wider text-brand-primary font-bold mb-1">ΕΚΠΑΙΔΕΥΣΗ</p>
+                                <p class="font-mono text-[10px] uppercase tracking-wider text-brand-primary font-bold mb-1">ΕΚΠΑΙΔΕΥΣΗ</p>
                                 <p class="text-sm font-serif text-brand-dark leading-snug font-medium">Κέντρο Συμβουλευτικής και Ψυχοθεραπείας Βίλχελμ Ράιχ<br>Απόφοιτη ΕΙΝΑ</p>
                             </div>
                         </div>
@@ -343,7 +351,7 @@
                                 <i data-lucide="book-open" class="w-6 h-6"></i>
                             </div>
                             <div>
-                                <p class="text-[10px] uppercase tracking-wider text-brand-primary font-bold mb-1">ΕΞΕΙΔΙΚΕΥΣΗ</p>
+                                <p class="font-mono text-[10px] uppercase tracking-wider text-brand-primary font-bold mb-1">ΕΞΕΙΔΙΚΕΥΣΗ</p>
                                 <p class="text-sm font-serif text-brand-dark leading-none font-medium">Σωματική Ραϊχική Προσέγγιση</p>
                             </div>
                         </div>
@@ -364,7 +372,7 @@
         <div class="container mx-auto px-6 relative z-10">
             <div class="max-w-4xl mx-auto text-center reveal">
                 <i data-lucide="quote" class="w-10 h-10 text-white drop-shadow-md mx-auto mb-6"></i>
-                <p class="font-serif text-2xl md:text-3xl lg:text-4xl text-white italic leading-relaxed drop-shadow-lg px-4 font-medium">
+                <p class="font-serif text-2xl md:text-3xl lg:text-4xl text-white italic leading-relaxed drop-shadow-lg px-4 font-normal">
                     "Ένας χώρος ασφάλειας όπου το σώμα μιλάει, τα συναισθήματα εκφράζονται, οι άμυνες υποχωρούν και ο αληθινός εαυτός αναδύεται."
                 </p>
                 <div class="w-16 h-1 bg-white/80 mx-auto mt-8 rounded-full shadow-sm"></div>
@@ -379,8 +387,8 @@
 
         <div class="container mx-auto px-6 relative z-10">
             <div class="text-center mb-16 reveal">
-                <span class="text-brand-accent tracking-[0.3em] text-xs uppercase font-bold">ΠΡΟΣΕΓΓΙΣΗ</span>
-                <h2 class="font-serif text-4xl md:text-5xl mt-3 text-brand-dark font-medium">Τι είναι η <span class="italic text-brand-primary">Σωματική Ψυχοθεραπεία</span></h2>
+                <span class="font-mono text-brand-accent tracking-[0.3em] text-xs uppercase font-bold">ΠΡΟΣΕΓΓΙΣΗ</span>
+                <h2 class="font-serif text-4xl md:text-5xl mt-3 text-brand-dark font-normal">Τι είναι η <span class="italic text-brand-primary">Σωματική Ψυχοθεραπεία</span></h2>
             </div>
 
             <div class="max-w-4xl mx-auto bg-brand-base p-10 md:p-14 rounded-[30px] shadow-lg border border-brand-sand/50 reveal">
@@ -404,11 +412,11 @@
         <div class="container mx-auto px-6">
             <div class="flex flex-col md:flex-row justify-between items-end mb-16 reveal">
                 <div>
-                    <span class="text-brand-accent tracking-[0.3em] text-xs uppercase font-bold">ΘΕΡΑΠΕΥΤΙΚΕΣ ΥΠΗΡΕΣΙΕΣ</span>
-                    <h2 class="font-serif text-4xl md:text-6xl mt-3 text-brand-dark font-medium">Φροντίδα <span class="italic text-brand-accent">&</span> Εξέλιξη</h2>
+                    <span class="font-mono text-brand-accent tracking-[0.3em] text-xs uppercase font-bold">ΘΕΡΑΠΕΥΤΙΚΕΣ ΥΠΗΡΕΣΙΕΣ</span>
+                    <h2 class="font-serif text-4xl md:text-6xl mt-3 text-brand-dark font-normal">Φροντίδα <span class="italic text-brand-accent">&</span> Εξέλιξη</h2>
                 </div>
                 <div class="hidden md:block pb-2">
-                    <img src="https://github.com/agelmet/image/blob/main/thumbnail-2.png?raw=true" class="w-12 opacity-20" alt="Icon">
+                    <i data-lucide="bird" class="w-12 h-12 text-brand-dark/20" stroke-width="1.2"></i>
                 </div>
             </div>
 
@@ -421,7 +429,7 @@
                         </div>
                         <h3 class="font-serif text-2xl mb-4 text-brand-dark group-hover:text-brand-primary transition-colors font-medium">Ατομικές συνεδρίες</h3>
                         <p class="text-brand-dark/70 font-light leading-relaxed">
-                            Μέσα σε ένα ζεστό και ασφαλές περιβάλλον, δημιουργούμε μαζί τον χώρο για να ακούσουμε τις ανάγκες σας. Μια εξατομικευμένη προσέγγιση με κατανόηση και φροντίδα για την ανακούφιση από το άγχος, την κατάθλιψη και τα ψυχοσωματικά συμπτώματα.
+                            Μέσα σε ένα ζεστό και ασφαλές περιβάλλον δημιουργούμε μαζί το χώρο για να ακούσουμε τις ανάγκες σας. Με σεβασμό στη μοναδικότητα κάθε ανθρώπου, η θεραπευτική διαδικασία προσαρμόζεται στις προσωπικές σας ανάγκες και στόχους.
                         </p>
                     </div>
                 </div>
@@ -480,7 +488,7 @@
             </div>
             
             <div class="text-center mt-12 reveal">
-                <a href="https://www.doctoranytime.gr/d/Symvoulos-psychikis-ygeias/kapsanaki-tonia" target="_blank" class="inline-flex items-center gap-2 text-brand-accent hover:text-brand-dark transition-colors uppercase tracking-widest text-sm font-semibold border-b border-brand-accent pb-1">
+                <a href="https://www.doctoranytime.gr/d/Symvoulos-psychikis-ygeias/kapsanaki-tonia" target="_blank" class="inline-flex items-center gap-2 text-brand-accent hover:text-brand-dark transition-colors font-mono uppercase tracking-widest text-sm font-semibold border-b border-brand-accent pb-1">
                     ΚΛΕΙΣΤΕ ΤΟ ΡΑΝΤΕΒΟΥ ΣΑΣ <i data-lucide="arrow-right" class="w-4 h-4"></i>
                 </a>
             </div>
@@ -491,14 +499,14 @@
     <section id="online-social" class="py-24 bg-brand-warm/20 relative overflow-hidden">
         <div class="container mx-auto px-6">
             <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto">
-                <!-- Online -->
+                <!-- Online (Skype reference removed) -->
                 <div class="bg-white p-10 rounded-[30px] shadow-sm border border-brand-sand/50 reveal">
                     <div class="w-14 h-14 bg-brand-base rounded-full flex items-center justify-center text-brand-primary mb-6">
                         <i data-lucide="globe-2" class="w-7 h-7"></i>
                     </div>
                     <h3 class="font-serif text-3xl mb-4 text-brand-dark font-medium">Online Συνεδρίες</h3>
                     <p class="text-brand-dark/70 font-light leading-relaxed">
-                        Συνεδρίες μέσω βιντεοκλήσης (Zoom / Skype) με ζεστασιά και αμεσότητα, για όσους βρίσκονται εκτός Αθηνών ή προτιμούν την άνεση του χώρου τους.
+                        Συνεδρίες μέσω ασφαλών πλατφορμών βιντεοκλήσης με ζεστασιά και αμεσότητα, για όσους βρίσκονται εκτός Αθηνών ή προτιμούν την άνεση του χώρου τους.
                     </p>
                 </div>
 
@@ -520,8 +528,8 @@
     <section id="gallery" class="py-24 bg-brand-base">
         <div class="container mx-auto px-6">
             <div class="text-center mb-16 reveal">
-                <span class="text-brand-accent tracking-[0.3em] text-xs uppercase font-bold">ΤΟ ΓΡΑΦΕΙΟ</span>
-                <h2 class="font-serif text-4xl md:text-5xl mt-3 text-brand-dark font-medium">Ο Χώρος <span class="italic text-brand-accent">Μας</span></h2>
+                <span class="font-mono text-brand-accent tracking-[0.3em] text-xs uppercase font-bold">ΤΟ ΓΡΑΦΕΙΟ</span>
+                <h2 class="font-serif text-4xl md:text-5xl mt-3 text-brand-dark font-normal">Ο Χώρος <span class="italic text-brand-accent">Μας</span></h2>
                 <p class="text-brand-dark/60 mt-4 max-w-2xl mx-auto font-light">Ένα περιβάλλον ηρεμίας, σχεδιασμένο για να προσφέρει ασφάλεια και χαλάρωση.</p>
             </div>
 
@@ -582,7 +590,7 @@
     <section id="reviews" class="py-24 bg-white overflow-hidden">
         <div class="container mx-auto px-6 mb-12 flex justify-between items-end reveal">
             <div>
-                <h2 class="font-serif text-4xl md:text-5xl mt-3 text-brand-dark font-medium">Ιστορίες <span class="italic text-brand-accent">Αλλαγής</span></h2>
+                <h2 class="font-serif text-4xl md:text-5xl mt-3 text-brand-dark font-normal">Ιστορίες <span class="italic text-brand-accent">Αλλαγής</span></h2>
             </div>
             <div class="flex gap-4">
                 <button id="prevReview" class="w-12 h-12 rounded-full border border-brand-dark/10 flex items-center justify-center hover:bg-brand-accent hover:border-brand-accent hover:text-white transition-all text-brand-dark">
@@ -711,7 +719,7 @@
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-16">
                 <!-- Info -->
                 <div class="reveal">
-                    <h2 class="font-serif text-5xl mb-8 text-brand-dark font-medium">Ξεκινήστε το Ταξίδι σας</h2>
+                    <h2 class="font-serif text-5xl mb-8 text-brand-dark font-normal">Ξεκινήστε το Ταξίδι σας</h2>
                     <p class="text-brand-dark/70 font-light mb-12 max-w-md">
                         Η ψυχική υγεία είναι ένα πολύτιμο δώρο στον εαυτό μας. Επικοινωνήστε μαζί μου για να ορίσουμε την πρώτη μας συνάντηση.
                     </p>
@@ -758,12 +766,12 @@
                         </div>
                     </div>
 
-                    <!-- Updated Social Links with Custom Images -->
+                    <!-- Updated Social Links -->
                     <div class="flex gap-6 mt-12">
                         <a href="https://www.facebook.com/p/Τόνια-Καψανάκη-Συμβουλευτική-Ψυχοθεραπεία-Σωματικής-Ραιχικής-Κατεύθυνσης-100078387995561/" target="_blank" class="w-12 h-12 rounded-full border border-brand-dark/20 flex items-center justify-center hover:scale-110 hover:border-brand-accent transition-all bg-white shadow-sm">
                              <img src="https://raw.githubusercontent.com/agelmet/Image-hosting-/refs/heads/main/icons8-facebook-480.png" alt="Facebook" class="w-6 h-6 object-contain">
                         </a>
-                        <a href="https://instagram.com" target="_blank" class="w-12 h-12 rounded-full border border-brand-dark/20 flex items-center justify-center hover:scale-110 hover:border-brand-accent transition-all bg-white shadow-sm">
+                        <a href="https://www.instagram.com/tonia_kapsanaki_psychotherapy/" target="_blank" class="w-12 h-12 rounded-full border border-brand-dark/20 flex items-center justify-center hover:scale-110 hover:border-brand-accent transition-all bg-white shadow-sm">
                              <img src="https://raw.githubusercontent.com/agelmet/Image-hosting-/refs/heads/main/instagram-logo-instagram-icon-transparent-free-png.png.webp" alt="Instagram" class="w-6 h-6 object-contain">
                         </a>
                         <a href="https://www.doctoranytime.gr/d/Symvoulos-psychikis-ygeias/kapsanaki-tonia" target="_blank" class="w-12 h-12 rounded-full border border-brand-dark/20 flex items-center justify-center hover:scale-110 hover:bg-brand-accent hover:border-brand-accent transition-all group bg-white shadow-sm">
@@ -793,17 +801,17 @@
     <!-- Footer -->
     <footer class="bg-brand-dark py-12">
         <div class="container mx-auto px-6 text-center">
-            <!-- Socials duplicated in Footer with greyscale hover effect for dark background -->
+            <!-- Socials duplicated in Footer -->
             <div class="flex justify-center gap-6 mb-8">
                 <a href="https://www.facebook.com/p/Τόνια-Καψανάκη-Συμβουλευτική-Ψυχοθεραπεία-Σωματικής-Ραιχικής-Κατεύθυνσης-100078387995561/" target="_blank" class="hover:scale-110 transition-transform">
                      <img src="https://raw.githubusercontent.com/agelmet/Image-hosting-/refs/heads/main/icons8-facebook-480.png" alt="Facebook" class="w-6 h-6 object-contain grayscale opacity-60 hover:grayscale-0 hover:opacity-100 transition-all">
                 </a>
-                <a href="https://instagram.com" target="_blank" class="hover:scale-110 transition-transform">
+                <a href="https://www.instagram.com/tonia_kapsanaki_psychotherapy/" target="_blank" class="hover:scale-110 transition-transform">
                      <img src="https://raw.githubusercontent.com/agelmet/Image-hosting-/refs/heads/main/instagram-logo-instagram-icon-transparent-free-png.png.webp" alt="Instagram" class="w-6 h-6 object-contain grayscale opacity-60 hover:grayscale-0 hover:opacity-100 transition-all">
                 </a>
             </div>
-             <p class="text-xs text-brand-primary uppercase tracking-widest mb-4">© 2026 Tonia Kapsanaki. All rights reserved.</p>
-             <a href="https://advonmedia.com" target="_blank" class="text-[10px] text-brand-primary/60 hover:text-white transition-colors flex items-center justify-center gap-1">
+             <p class="font-mono text-xs text-brand-primary uppercase tracking-widest mb-4">© 2026 Tonia Kapsanaki. All rights reserved.</p>
+             <a href="https://advonmedia.com" target="_blank" class="font-mono text-[10px] text-brand-primary/60 hover:text-white transition-colors flex items-center justify-center gap-1">
                  DESIGNED BY ADVON MEDIA <i data-lucide="external-link" class="w-3 h-3"></i>
              </a>
         </div>

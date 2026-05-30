@@ -168,6 +168,22 @@
         #mobile-menu.is-open {
             transform: translateX(0);
         }
+
+        /* Mobile Hero Reveal Logic */
+        @media (max-width: 768px) {
+            .mobile-hero-card-hidden {
+                opacity: 0 !important;
+                transform: translateY(30px) !important;
+                pointer-events: none;
+            }
+            .mobile-overlay-hidden {
+                opacity: 0 !important;
+            }
+            .mobile-prompt-hidden {
+                opacity: 0 !important;
+                pointer-events: none;
+            }
+        }
     </style>
 <link rel="stylesheet" href="/index.css">
 </head>
@@ -224,8 +240,8 @@
         </div>
     </nav>
 
-    <!-- Hero Section (Mobile Optimized & Business Card Aesthetic) -->
-    <section class="relative min-h-[100svh] flex items-center justify-center overflow-hidden">
+    <!-- Hero Section (Mobile Tap/Scroll Reveal) -->
+    <section id="hero-section" class="relative min-h-[100svh] flex items-center justify-center overflow-hidden cursor-pointer md:cursor-auto">
         
         <!-- Background Implementation -->
         <div class="absolute inset-0 z-0 bg-brand-base">
@@ -233,20 +249,26 @@
             <img src="https://assets.cdn.filesafe.space/61icdoMiJ2pHklO6mmKW/media/69aa802636702f051e0a973a.jpg" alt="Therapy Room" class="hidden md:block w-full h-full object-cover object-[center_20%]">
             <div class="absolute inset-0 bg-white/40 hidden md:block"></div>
             
-            <!-- Mobile Image (Top aligned to prevent over-zooming) -->
-            <img src="https://assets.cdn.filesafe.space/61icdoMiJ2pHklO6mmKW/media/69aa802636702f051e0a973a.jpg" alt="Therapy Room" class="block md:hidden w-full h-[65vh] object-cover object-top opacity-60">
-            <!-- Mobile Gradient Fade to base color -->
-            <div class="absolute inset-0 bg-gradient-to-b from-transparent via-brand-base/50 to-brand-base block md:hidden"></div>
+            <!-- Mobile Image (Always full screen perfectly shown initially) -->
+            <img src="https://assets.cdn.filesafe.space/61icdoMiJ2pHklO6mmKW/media/69aa802636702f051e0a973a.jpg" alt="Therapy Room" class="block md:hidden w-full h-[100svh] object-cover object-center">
+            <!-- Mobile White Overlay (hidden initially, fades in when tapped) -->
+            <div id="mobile-hero-overlay" class="absolute inset-0 bg-white/50 block md:hidden transition-opacity duration-700 ease-in-out mobile-overlay-hidden"></div>
+        </div>
+
+        <!-- Mobile Tap Prompt -->
+        <div id="tap-prompt" class="absolute bottom-12 left-1/2 -translate-x-1/2 flex flex-col items-center md:hidden transition-opacity duration-500 text-brand-dark/90 z-20">
+            <span class="text-[10px] font-semibold tracking-[0.2em] uppercase mb-2 bg-white/70 px-4 py-1.5 rounded-full backdrop-blur-md shadow-sm border border-white/50">Αγγίξτε την οθόνη</span>
+            <i data-lucide="chevron-down" class="w-6 h-6 animate-bounce text-brand-dark/80"></i>
         </div>
 
         <!-- Content Overlay -->
         <div class="container mx-auto px-4 relative z-10 w-full h-full flex flex-col justify-center pt-16 md:pt-0">
             
-            <!-- White Glass Card on Mobile for total legibility / Blends seamlessly on desktop -->
-            <div class="bg-white/90 md:bg-transparent backdrop-blur-md md:backdrop-blur-none p-8 md:p-0 rounded-[30px] md:rounded-none shadow-2xl shadow-brand-dark/5 md:shadow-none border border-white/50 md:border-transparent w-[96%] max-w-[500px] md:max-w-4xl mx-auto flex flex-col items-center justify-center text-center reveal">
+            <!-- Card containing text & buttons. Hidden on mobile initially. -->
+            <div id="hero-card" class="bg-white/90 md:bg-transparent backdrop-blur-md md:backdrop-blur-none p-8 md:p-0 rounded-[30px] md:rounded-none shadow-2xl shadow-brand-dark/5 md:shadow-none border border-white/50 md:border-transparent w-[96%] max-w-[500px] md:max-w-4xl mx-auto flex flex-col items-center justify-center text-center transition-all duration-700 ease-out mobile-hero-card-hidden md:opacity-100 md:translate-y-0">
                 
-                <!-- Minimalist Line-Art Bird Graphic -->
-                <i data-lucide="bird" class="w-10 h-10 md:w-12 md:h-12 mx-auto mb-4 text-brand-dark/80" stroke-width="1.2"></i>
+                <!-- Requested Graphic replacement -->
+                <img src="https://raw.githubusercontent.com/agelmet/image/refs/heads/main/thumbnail-2.png" alt="Brand Icon" class="w-14 h-14 md:w-16 md:h-16 mx-auto mb-4 object-contain opacity-90">
 
                 <!-- Name (Elegant Serif from Business Card) -->
                 <h1 class="font-serif text-[2.5rem] md:text-5xl lg:text-6xl leading-tight mb-3 text-brand-dark drop-shadow-sm font-normal uppercase tracking-wide">
@@ -277,7 +299,7 @@
             </div>
         </div>
 
-        <!-- Scroll Indicator -->
+        <!-- Desktop Scroll Indicator -->
         <div class="absolute bottom-8 left-1/2 -translate-x-1/2 animate-bounce hidden md:block z-10">
             <i data-lucide="chevron-down" class="text-brand-dark/60 w-8 h-8"></i>
         </div>
@@ -293,9 +315,9 @@
             <div class="max-w-6xl mx-auto">
                 
                 <div class="flex flex-col lg:flex-row gap-12 items-stretch mb-8">
-                    <!-- Left: Image -->
-                    <div class="w-full lg:w-1/2 relative reveal">
-                        <div class="absolute -inset-3 border-2 border-brand-accent/20 rounded-[40px] z-0 transform translate-x-3 translate-y-3 hidden md:block"></div>
+                    <!-- Left: Desktop Image (Hidden on Mobile) -->
+                    <div class="hidden lg:block w-full lg:w-1/2 relative reveal">
+                        <div class="absolute -inset-3 border-2 border-brand-accent/20 rounded-[40px] z-0 transform translate-x-3 translate-y-3"></div>
                         <div class="relative w-full h-full min-h-[400px] lg:min-h-[500px] rounded-[30px] overflow-hidden shadow-2xl bg-brand-sand border-4 border-white group">
                             <img src="https://github.com/agelmet/image/blob/main/IMG_9917.jpg?raw=true" 
                                 class="absolute inset-0 w-full h-full object-cover object-[center_20%] transform transition-transform duration-1000 group-hover:scale-[1.03] z-10" 
@@ -303,7 +325,7 @@
                         </div>
                     </div>
 
-                    <!-- Right: Text -->
+                    <!-- Right: Text (Paragraphs 1-3) -->
                     <div class="w-full lg:w-1/2 flex flex-col justify-center reveal delay-100">
                         <div class="mb-8">
                             <span class="font-mono px-4 py-1.5 rounded-full bg-brand-accent/10 text-brand-accent tracking-widest text-xs uppercase font-bold inline-block mb-4 border border-brand-accent/20">BIOΓΡΑΦΙΚΟ</span>
@@ -326,6 +348,14 @@
                     </div>
                 </div>
 
+                <!-- Mobile Image (Shown ONLY on Mobile, right after Paragraph 3) -->
+                <div class="block lg:hidden w-full relative reveal mb-8">
+                    <div class="relative w-full h-[400px] rounded-[30px] overflow-hidden shadow-xl bg-brand-sand border-4 border-white">
+                        <img src="https://github.com/agelmet/image/blob/main/IMG_9917.jpg?raw=true" class="absolute inset-0 w-full h-full object-cover object-[center_20%] z-10" alt="Tonia Kapsanaki">
+                    </div>
+                </div>
+
+                <!-- Bottom Text (Paragraphs 4-5 & Credentials) -->
                 <div class="bg-white p-8 md:p-10 rounded-[30px] shadow-sm border border-brand-sand/50 relative z-10 reveal delay-200">
                     <div class="text-brand-dark/80 font-light leading-relaxed text-base text-justify space-y-6 mb-10">
                         <p>
@@ -416,7 +446,7 @@
                     <h2 class="font-serif text-4xl md:text-6xl mt-3 text-brand-dark font-normal">Φροντίδα <span class="italic text-brand-accent">&</span> Εξέλιξη</h2>
                 </div>
                 <div class="hidden md:block pb-2">
-                    <i data-lucide="bird" class="w-12 h-12 text-brand-dark/20" stroke-width="1.2"></i>
+                    <img src="https://raw.githubusercontent.com/agelmet/image/refs/heads/main/thumbnail-2.png" alt="Icon" class="w-12 h-12 opacity-20">
                 </div>
             </div>
 
@@ -499,7 +529,7 @@
     <section id="online-social" class="py-24 bg-brand-warm/20 relative overflow-hidden">
         <div class="container mx-auto px-6">
             <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto">
-                <!-- Online (Skype reference removed) -->
+                <!-- Online -->
                 <div class="bg-white p-10 rounded-[30px] shadow-sm border border-brand-sand/50 reveal">
                     <div class="w-14 h-14 bg-brand-base rounded-full flex items-center justify-center text-brand-primary mb-6">
                         <i data-lucide="globe-2" class="w-7 h-7"></i>
@@ -828,6 +858,29 @@
     <script>
         // Initialize Lucide Icons
         lucide.createIcons();
+
+        // --- Mobile Hero Reveal Logic ---
+        let heroRevealed = false;
+        const heroCard = document.getElementById('hero-card');
+        const heroOverlay = document.getElementById('mobile-hero-overlay');
+        const tapPrompt = document.getElementById('tap-prompt');
+        
+        function revealMobileHero() {
+            if (!heroRevealed && window.innerWidth <= 768) {
+                if(heroCard) heroCard.classList.remove('mobile-hero-card-hidden');
+                if(heroOverlay) heroOverlay.classList.remove('mobile-overlay-hidden');
+                if(tapPrompt) tapPrompt.classList.add('mobile-prompt-hidden');
+                heroRevealed = true;
+            }
+        }
+
+        // Attach listeners for tap and scroll to trigger the reveal
+        window.addEventListener('scroll', revealMobileHero, {passive: true});
+        const heroSection = document.getElementById('hero-section');
+        if (heroSection) {
+            heroSection.addEventListener('touchstart', revealMobileHero, {passive: true});
+            heroSection.addEventListener('click', revealMobileHero);
+        }
 
         // Mobile Menu Logic
         const mobileMenuBtn = document.getElementById('mobile-menu-btn');

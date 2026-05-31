@@ -11,14 +11,18 @@
     <meta property="og:description" content="Ολιστική προσέγγιση στην ψυχική υγεία. Ανακαλύψτε τη θεραπευτική δύναμη της σωματικής έκφρασης.">
     <link rel="icon" type="image/png" href="https://github.com/agelmet/image/blob/main/thumbnail-2.png?raw=true">
 
+    <!-- Google Fonts: Cormorant Garamond (Elegant Serif) & Courier Prime (Typewriter Mono) & Montserrat (Clean Sans) -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600&family=Courier+Prime:ital,wght@0,400;0,700;1,400&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
 
+    <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     
+    <!-- Lucide Icons -->
     <script src="https://unpkg.com/lucide@latest"></script>
 
+    <!-- Tailwind Config -->
     <script>
         tailwind.config = {
             theme: {
@@ -155,15 +159,6 @@
         html {
             scroll-padding-top: 100px;
         }
-        
-        /* Mobile Menu */
-        #mobile-menu {
-            transform: translateX(100%);
-            transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-        #mobile-menu.is-open {
-            transform: translateX(0);
-        }
 
         /* Mobile Hero Reveal Logic */
         @media (max-width: 768px) {
@@ -185,11 +180,13 @@
 </head>
 <body class="bg-brand-base text-brand-dark font-sans antialiased overflow-x-hidden selection:bg-brand-accent/20 selection:text-brand-dark relative">
 
+    <!-- Ambient Background Elements -->
     <div class="fixed top-0 left-0 w-full h-full overflow-hidden pointer-events-none -z-10">
         <div class="absolute top-[-10%] right-[-10%] w-[50vw] h-[50vw] bg-brand-accent/5 rounded-full blur-[120px] animate-float"></div>
         <div class="absolute bottom-[-10%] left-[-10%] w-[40vw] h-[40vw] bg-blue-50/60 rounded-full blur-[100px] animate-float-delayed"></div>
     </div>
 
+    <!-- Navigation -->
     <nav id="navbar" class="fixed w-full z-50 transition-all duration-300 glass-nav py-4">
         <div class="container mx-auto px-6 flex justify-between items-center">
             <a href="#" class="flex items-center gap-3 group relative z-50">
@@ -200,6 +197,7 @@
                 </div>
             </a>
 
+            <!-- Desktop Menu -->
             <div class="hidden md:flex items-center gap-10 text-brand-dark">
                 <a href="#about" class="nav-link text-sm uppercase tracking-widest hover:text-brand-accent transition-colors font-medium py-2">ΒΙΟΓΡΑΦΙΚΟ</a>
                 <a href="#services" class="nav-link text-sm uppercase tracking-widest hover:text-brand-accent transition-colors font-medium py-2">ΥΠΗΡΕΣΙΕΣ</a>
@@ -210,17 +208,20 @@
                 </a>
             </div>
 
+            <!-- Mobile Button -->
             <button id="mobile-menu-btn" class="md:hidden text-brand-dark focus:outline-none relative z-50 p-2">
                 <i data-lucide="menu" class="w-8 h-8"></i>
             </button>
         </div>
 
-        <div id="mobile-menu" class="fixed inset-0 w-full h-full z-[9999] bg-white flex flex-col transition-transform duration-300 translate-x-full overflow-x-hidden overflow-y-auto">
+        <!-- Mobile Menu Overlay -->
+        <div id="mobile-menu" class="fixed inset-0 w-full h-full z-[9999] bg-white flex flex-col transition-transform duration-500 ease-in-out translate-x-full overflow-x-hidden overflow-y-auto">
             <div class="absolute top-6 right-6 z-50">
                 <button id="close-menu-btn" class="text-brand-dark p-2 hover:bg-gray-100 rounded-full transition-colors">
                     <i data-lucide="x" class="w-10 h-10"></i>
                 </button>
             </div>
+            <!-- Fixed padding, spacing, and max-widths to prevent cutoff on small screens -->
             <div class="flex-1 flex flex-col justify-center items-center gap-6 p-8 w-full min-h-full">
                 <a href="#about" class="text-2xl md:text-3xl font-serif text-brand-dark hover:text-brand-accent transition-colors font-medium text-center w-full" onclick="closeMenu()">ΒΙΟΓΡΑΦΙΚΟ</a>
                 <a href="#services" class="text-2xl md:text-3xl font-serif text-brand-dark hover:text-brand-accent transition-colors font-medium text-center w-full" onclick="closeMenu()">ΥΠΗΡΕΣΙΕΣ</a>
@@ -231,39 +232,52 @@
         </div>
     </nav>
 
+    <!-- Hero Section (Mobile Tap/Scroll Reveal) -->
     <section id="hero-section" class="relative min-h-[100svh] flex items-center justify-center overflow-hidden cursor-pointer md:cursor-auto">
         
+        <!-- Background Implementation -->
         <div class="absolute inset-0 z-0 bg-brand-base">
+            <!-- Desktop Image (Cover) -->
             <img src="https://assets.cdn.filesafe.space/61icdoMiJ2pHklO6mmKW/media/69aa802636702f051e0a973a.jpg" alt="Therapy Room" class="hidden md:block w-full h-full object-cover object-[center_20%]">
             <div class="absolute inset-0 bg-white/40 hidden md:block"></div>
             
+            <!-- Mobile Image (Always full screen perfectly shown initially) -->
             <img src="https://assets.cdn.filesafe.space/61icdoMiJ2pHklO6mmKW/media/69aa802636702f051e0a973a.jpg" alt="Therapy Room" class="block md:hidden w-full h-[100svh] object-cover object-center">
+            <!-- Mobile White Overlay (hidden initially, fades in when tapped) -->
             <div id="mobile-hero-overlay" class="absolute inset-0 bg-white/50 block md:hidden transition-opacity duration-700 ease-in-out mobile-overlay-hidden"></div>
         </div>
 
+        <!-- Mobile Tap Prompt -->
         <div id="tap-prompt" class="absolute bottom-12 left-1/2 -translate-x-1/2 flex flex-col items-center md:hidden transition-opacity duration-500 text-brand-dark/90 z-20">
             <span class="text-[10px] font-semibold tracking-[0.2em] uppercase mb-2 bg-white/70 px-4 py-1.5 rounded-full backdrop-blur-md shadow-sm border border-white/50">Αγγίξτε την οθόνη</span>
             <i data-lucide="chevron-down" class="w-6 h-6 animate-bounce text-brand-dark/80"></i>
         </div>
 
+        <!-- Content Overlay -->
         <div class="container mx-auto px-4 relative z-10 w-full h-full flex flex-col justify-center pt-16 md:pt-0">
             
+            <!-- Card containing text & buttons. Hidden on mobile initially. -->
             <div id="hero-card" class="bg-white/90 md:bg-transparent backdrop-blur-md md:backdrop-blur-none p-8 md:p-0 rounded-[30px] md:rounded-none shadow-2xl shadow-brand-dark/5 md:shadow-none border border-white/50 md:border-transparent w-[96%] max-w-[500px] md:max-w-4xl mx-auto flex flex-col items-center justify-center text-center transition-all duration-700 ease-out mobile-hero-card-hidden md:opacity-100 md:translate-y-0">
                 
+                <!-- Requested Graphic replacement -->
                 <img src="https://raw.githubusercontent.com/agelmet/image/refs/heads/main/thumbnail-2.png" alt="Brand Icon" class="w-14 h-14 md:w-16 md:h-16 mx-auto mb-4 object-contain opacity-90">
 
+                <!-- Name (Elegant Serif from Business Card) -->
                 <h1 class="font-serif text-[2.5rem] md:text-5xl lg:text-6xl leading-tight mb-3 text-brand-dark drop-shadow-sm font-normal uppercase tracking-wide">
                     ΤΟΝΙΑ ΚΑΨΑΝΑΚΗ
                 </h1>
                 
+                <!-- Subtitle (Typewriter Mono) -->
                 <h2 class="font-mono text-brand-accent tracking-[0.15em] md:tracking-[0.2em] text-[10px] md:text-sm uppercase mb-4 font-semibold">
                     ΣΥΜΒΟΥΛΟΣ ΨΥΧΙΚΗΣ ΥΓΕΙΑΣ
                 </h2>
                 
+                <!-- Description -->
                 <p class="font-serif text-xl md:text-3xl text-brand-dark/90 italic mb-10 leading-relaxed drop-shadow-sm max-w-2xl mx-auto">
                     Συμβουλευτική - Ψυχοθεραπεία<br class="md:hidden"> Σωματικής Ραϊχικής Προσέγγισης
                 </p>
                 
+                <!-- Desktop & Mobile Buttons -->
                 <div class="flex flex-col sm:flex-row justify-center items-center gap-4 sm:gap-6 w-full">
                     <a href="https://www.doctoranytime.gr/d/Symvoulos-psychikis-ygeias/kapsanaki-tonia" target="_blank" class="w-full sm:w-auto group relative px-8 py-3.5 md:py-4 bg-brand-accent text-white font-serif text-lg tracking-wide overflow-hidden rounded-full shadow-lg shadow-brand-accent/30 transition-all hover:translate-y-[-2px] hover:shadow-xl hover:bg-brand-primary">
                         <span class="relative z-10 flex items-center justify-center gap-2">
@@ -277,12 +291,15 @@
             </div>
         </div>
 
+        <!-- Desktop Scroll Indicator -->
         <div class="absolute bottom-8 left-1/2 -translate-x-1/2 animate-bounce hidden md:block z-10">
             <i data-lucide="chevron-down" class="text-brand-dark/60 w-8 h-8"></i>
         </div>
     </section>
 
+    <!-- About Section -->
     <section id="about" class="py-24 relative overflow-hidden bg-brand-base">
+        <!-- Decoration -->
         <div class="absolute left-0 top-20 w-[600px] h-[600px] bg-brand-warm/40 rounded-full blur-[100px] -z-10 pointer-events-none"></div>
         <div class="absolute right-0 bottom-0 w-[500px] h-[500px] bg-brand-accent/10 rounded-full blur-[100px] -z-10 pointer-events-none"></div>
 
@@ -290,6 +307,7 @@
             <div class="max-w-6xl mx-auto">
                 
                 <div class="flex flex-col lg:flex-row gap-12 items-stretch mb-8">
+                    <!-- Left: Desktop Image (Hidden on Mobile) -->
                     <div class="hidden lg:block w-full lg:w-1/2 relative reveal">
                         <div class="absolute -inset-3 border-2 border-brand-accent/20 rounded-[40px] z-0 transform translate-x-3 translate-y-3"></div>
                         <div class="relative w-full h-full min-h-[400px] lg:min-h-[500px] rounded-[30px] overflow-hidden shadow-2xl bg-brand-sand border-4 border-white group">
@@ -299,6 +317,7 @@
                         </div>
                     </div>
 
+                    <!-- Right: Text (Paragraphs 1-3) -->
                     <div class="w-full lg:w-1/2 flex flex-col justify-center reveal delay-100">
                         <div class="mb-8">
                             <span class="font-mono px-4 py-1.5 rounded-full bg-brand-accent/10 text-brand-accent tracking-widest text-xs uppercase font-bold inline-block mb-4 border border-brand-accent/20">ΒΙΟΓΡΑΦΙΚΟ</span>
@@ -307,7 +326,8 @@
                             </h2>
                         </div>
                         
-                        <div class="bg-white p-8 md:p-10 rounded-[30px] shadow-sm border border-brand-sand/50 text-brand-dark/80 font-light leading-relaxed text-base text-justify space-y-6 flex-grow">
+                        <!-- REMOVED text-justify, REPLACED with text-left to fix random word spacing -->
+                        <div class="bg-white p-8 md:p-10 rounded-[30px] shadow-sm border border-brand-sand/50 text-brand-dark/80 font-light leading-relaxed text-base text-left space-y-6 flex-grow">
                             <p>
                                 Η Καψανάκη Τόνια είναι Σύμβουλος Ψυχικής Υγείας, Σωματικής Ραϊχικής Προσέγγισης και διατηρεί ιδιωτικό γραφείο στο Παγκράτι, όπου παρέχει ατομικές συνεδρίες, ομάδες αυτογνωσίας ενηλίκων, ομάδες Μητρότητας (εγκύων και λοχείας), συμβουλευτική γονέων και συμβουλευτική ζεύγους.
                             </p>
@@ -321,14 +341,17 @@
                     </div>
                 </div>
 
+                <!-- Mobile Image (Shown ONLY on Mobile, right after Paragraph 3) -->
                 <div class="block lg:hidden w-full relative reveal mb-8">
                     <div class="relative w-full h-[400px] rounded-[30px] overflow-hidden shadow-xl bg-brand-sand border-4 border-white">
                         <img src="https://github.com/agelmet/image/blob/main/IMG_9917.jpg?raw=true" class="absolute inset-0 w-full h-full object-cover object-[center_20%] z-10" alt="Tonia Kapsanaki">
                     </div>
                 </div>
 
+                <!-- Bottom Text (Paragraphs 4-5 & Credentials) -->
+                <!-- REMOVED text-justify, REPLACED with text-left -->
                 <div class="bg-white p-8 md:p-10 rounded-[30px] shadow-sm border border-brand-sand/50 relative z-10 reveal delay-200">
-                    <div class="text-brand-dark/80 font-light leading-relaxed text-base text-justify space-y-6 mb-10">
+                    <div class="text-brand-dark/80 font-light leading-relaxed text-base text-left space-y-6 mb-10">
                         <p>
                             Αναλαμβάνει ένα ευρύτατο φάσμα ψυχικών διαταραχών όπως άγχος, κατάθλιψη, φοβίες, ψυχοσωματικά συμπτώματα, δυσκολίες σε καθημερινές καταστάσεις στην οικογένεια και την εργασία, κρίσεις πανικού κ.α., με στόχο να απαλλαγεί το άτομο από τις εσωτερικές συγκρούσεις και δυσκολίες της ζωής του. Στη θεραπευτική διαδικασία το άτομο μαθαίνει μέσα από τις προσωπικές του ανάγκες και τη μοναδικότητά του, να χρησιμοποιεί το δυναμικό του και να βελτιώνει τη λειτουργικότητα στην καθημερινότητα του, τις σχέσεις με τους άλλους και με τον εαυτό του, εμβαθύνοντας στην αυτογνωσία του.
                         </p>
@@ -363,6 +386,7 @@
         </div>
     </section>
 
+    <!-- Quote Section -->
     <section class="relative min-h-[60vh] flex items-center justify-center overflow-hidden">
         <div class="absolute inset-0 z-0">
             <img src="https://github.com/agelmet/image/blob/main/IMG_9906.jpg?raw=true" class="w-full h-full object-cover object-center" alt="Background Texture">
@@ -380,6 +404,7 @@
         </div>
     </section>
 
+    <!-- What is Somatic Psychotherapy Section -->
     <section id="somatic-psychotherapy" class="py-24 bg-white relative overflow-hidden">
         <div class="absolute top-0 right-0 w-[40vw] h-[40vw] bg-brand-warm/40 rounded-full blur-[100px] pointer-events-none"></div>
         <div class="absolute bottom-0 left-0 w-[40vw] h-[40vw] bg-brand-accent/5 rounded-full blur-[100px] pointer-events-none"></div>
@@ -390,8 +415,9 @@
                 <h2 class="font-serif text-4xl md:text-5xl mt-3 text-brand-dark font-normal">Τι είναι η <span class="italic text-brand-primary">Σωματική Ψυχοθεραπεία</span></h2>
             </div>
 
+            <!-- REMOVED text-justify, REPLACED with text-left -->
             <div class="max-w-4xl mx-auto bg-brand-base p-10 md:p-14 rounded-[30px] shadow-lg border border-brand-sand/50 reveal">
-                <div class="space-y-6 text-brand-dark/80 font-light leading-relaxed text-lg text-justify">
+                <div class="space-y-6 text-brand-dark/80 font-light leading-relaxed text-lg text-left">
                     <p>
                         Η Σωματική Ψυχοθεραπεία είναι μια ολιστική προσέγγιση που αναγνωρίζει την αδιαχώριστη ενότητα σώματος και νου. Βασίζεται στην αρχή ότι οι ψυχολογικές μας εμπειρίες, τα συναισθήματα και τα τραύματα δεν καταγράφονται μόνο στη μνήμη μας, αλλά αποτυπώνονται και στο φυσικό μας σώμα με τη μορφή μυϊκών εντάσεων, αλλαγών στην αναπνοή και στη στάση του σώματος.
                     </p>
@@ -406,6 +432,7 @@
         </div>
     </section>
 
+    <!-- Services Section -->
     <section id="services" class="py-24 relative bg-brand-base">
         <div class="container mx-auto px-6">
             <div class="flex flex-col md:flex-row justify-between items-end mb-16 reveal">
@@ -419,6 +446,7 @@
             </div>
 
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Service 1 -->
                 <div class="service-card group relative overflow-hidden rounded-[30px] bg-white border border-transparent hover:border-brand-accent/30 reveal shadow-[0_10px_30px_-10px_rgba(0,0,0,0.05)] hover:shadow-[0_30px_60px_-15px_rgba(141,163,153,0.3)]">
                     <div class="p-10 relative z-10">
                         <div class="w-14 h-14 bg-brand-base rounded-full shadow-sm flex items-center justify-center text-brand-dark mb-8 group-hover:scale-110 transition-transform duration-500">
@@ -431,6 +459,7 @@
                     </div>
                 </div>
 
+                <!-- Service 2 -->
                 <div class="service-card group relative overflow-hidden rounded-[30px] bg-white border border-transparent hover:border-brand-primary/30 reveal delay-100 shadow-[0_10px_30px_-10px_rgba(0,0,0,0.05)] hover:shadow-[0_30px_60px_-15px_rgba(93,112,127,0.3)]">
                     <div class="p-10 relative z-10">
                          <div class="w-14 h-14 bg-brand-base rounded-full shadow-sm flex items-center justify-center text-brand-primary mb-8 group-hover:scale-110 transition-transform duration-500">
@@ -443,6 +472,7 @@
                     </div>
                 </div>
 
+                <!-- Service 3 -->
                 <div class="service-card group relative overflow-hidden rounded-[30px] bg-white border border-transparent hover:border-brand-accent/30 reveal delay-200 shadow-[0_10px_30px_-10px_rgba(0,0,0,0.05)] hover:shadow-[0_30px_60px_-15px_rgba(141,163,153,0.3)]">
                     <div class="p-10 relative z-10">
                          <div class="w-14 h-14 bg-brand-base rounded-full shadow-sm flex items-center justify-center text-brand-dark mb-8 group-hover:scale-110 transition-transform duration-500">
@@ -455,6 +485,7 @@
                     </div>
                 </div>
 
+                 <!-- Service 4 -->
                  <div class="service-card group relative overflow-hidden rounded-[30px] bg-white border border-transparent hover:border-brand-primary/30 reveal delay-300 shadow-[0_10px_30px_-10px_rgba(0,0,0,0.05)] hover:shadow-[0_30px_60px_-15px_rgba(93,112,127,0.3)]">
                     <div class="p-10 relative z-10">
                          <div class="w-14 h-14 bg-brand-base rounded-full shadow-sm flex items-center justify-center text-brand-primary mb-8 group-hover:scale-110 transition-transform duration-500">
@@ -467,6 +498,7 @@
                     </div>
                 </div>
 
+                <!-- Service 5 -->
                 <div class="service-card group relative overflow-hidden rounded-[30px] bg-white border border-transparent hover:border-brand-accent/30 reveal delay-400 shadow-[0_10px_30px_-10px_rgba(0,0,0,0.05)] hover:shadow-[0_30px_60px_-15px_rgba(141,163,153,0.3)]">
                     <div class="p-10 relative z-10">
                          <div class="w-14 h-14 bg-brand-base rounded-full shadow-sm flex items-center justify-center text-brand-dark mb-8 group-hover:scale-110 transition-transform duration-500">
@@ -488,9 +520,11 @@
         </div>
     </section>
 
+    <!-- Online & Κοινωνική Ευθύνη Section -->
     <section id="online-social" class="py-24 bg-brand-warm/20 relative overflow-hidden">
         <div class="container mx-auto px-6">
             <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto">
+                <!-- Online -->
                 <div class="bg-white p-10 rounded-[30px] shadow-sm border border-brand-sand/50 reveal">
                     <div class="w-14 h-14 bg-brand-base rounded-full flex items-center justify-center text-brand-primary mb-6">
                         <i data-lucide="globe-2" class="w-7 h-7"></i>
@@ -501,6 +535,7 @@
                     </p>
                 </div>
 
+                <!-- Κοινωνική Ευθύνη -->
                 <div class="bg-white p-10 rounded-[30px] shadow-sm border border-brand-sand/50 reveal delay-100">
                     <div class="w-14 h-14 bg-brand-base rounded-full flex items-center justify-center text-brand-accent mb-6">
                         <i data-lucide="heart" class="w-7 h-7"></i>
@@ -514,6 +549,7 @@
         </div>
     </section>
 
+    <!-- Gallery Section -->
     <section id="gallery" class="py-24 bg-brand-base">
         <div class="container mx-auto px-6">
             <div class="text-center mb-16 reveal">
@@ -575,6 +611,7 @@
         </div>
     </section>
 
+    <!-- Reviews Section -->
     <section id="reviews" class="py-24 bg-white overflow-hidden">
         <div class="container mx-auto px-6 mb-12 flex justify-between items-end reveal">
             <div>
@@ -697,6 +734,7 @@
         </div>
     </section>
 
+    <!-- Contact Section -->
     <section class="py-24 relative overflow-hidden bg-brand-base">
          <div class="absolute inset-0 z-0">
              <img src="https://github.com/agelmet/image/blob/main/IMG_9910.jpg?raw=true" alt="Nature texture" class="w-full h-full object-cover opacity-10 blur-sm mix-blend-overlay">
@@ -704,6 +742,7 @@
 
         <div class="container mx-auto px-6 relative z-10">
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-16">
+                <!-- Info -->
                 <div class="reveal">
                     <h2 class="font-serif text-5xl mb-8 text-brand-dark font-normal">Ξεκινήστε το Ταξίδι σας</h2>
                     <p class="text-brand-dark/70 font-light mb-12 max-w-md">
@@ -752,6 +791,7 @@
                         </div>
                     </div>
 
+                    <!-- Social Links -->
                     <div class="flex gap-6 mt-12">
                         <a href="https://www.facebook.com/p/Τόνια-Καψανάκη-Συμβουλευτική-Ψυχοθεραπεία-Σωματικής-Ραιχικής-Κατεύθυνσης-100078387995561/" target="_blank" class="w-12 h-12 rounded-full border border-brand-dark/20 flex items-center justify-center hover:scale-110 hover:border-brand-accent transition-all bg-white shadow-sm">
                              <img src="https://raw.githubusercontent.com/agelmet/Image-hosting-/refs/heads/main/icons8-facebook-480.png" alt="Facebook" class="w-6 h-6 object-contain">
@@ -783,8 +823,10 @@
         </div>
     </section>
 
+    <!-- Footer -->
     <footer class="bg-brand-dark py-12">
         <div class="container mx-auto px-6 text-center">
+            <!-- Socials duplicated in Footer -->
             <div class="flex justify-center gap-6 mb-8">
                 <a href="https://www.facebook.com/p/Τόνια-Καψανάκη-Συμβουλευτική-Ψυχοθεραπεία-Σωματικής-Ραιχικής-Κατεύθυνσης-100078387995561/" target="_blank" class="hover:scale-110 transition-transform">
                      <img src="https://raw.githubusercontent.com/agelmet/Image-hosting-/refs/heads/main/icons8-facebook-480.png" alt="Facebook" class="w-6 h-6 object-contain grayscale opacity-60 hover:grayscale-0 hover:opacity-100 transition-all">
@@ -800,6 +842,7 @@
         </div>
     </footer>
 
+    <!-- Lightbox Modal -->
     <div id="lightbox" class="fixed inset-0 z-[100] bg-black/90 hidden justify-center items-center opacity-0 pointer-events-none transition-opacity duration-300">
         <button onclick="closeLightbox()" class="absolute top-6 right-6 text-white hover:text-brand-accent transition-colors z-[101]">
             <i data-lucide="x" class="w-10 h-10"></i>
@@ -834,18 +877,20 @@
             heroSection.addEventListener('click', revealMobileHero);
         }
 
-        // Mobile Menu Logic
+        // Mobile Menu Logic (Updated to pure Tailwind classes for flawless execution)
         const mobileMenuBtn = document.getElementById('mobile-menu-btn');
         const closeMenuBtn = document.getElementById('close-menu-btn');
         const mobileMenu = document.getElementById('mobile-menu');
 
         function openMenu() {
-            mobileMenu.classList.add('is-open');
+            mobileMenu.classList.remove('translate-x-full');
+            mobileMenu.classList.add('translate-x-0');
             document.body.style.overflow = 'hidden';
         }
 
         function closeMenu() {
-            mobileMenu.classList.remove('is-open');
+            mobileMenu.classList.remove('translate-x-0');
+            mobileMenu.classList.add('translate-x-full');
             document.body.style.overflow = 'auto';
         }
 
